@@ -27,3 +27,25 @@ int	check_empty(Contact contact)
 		return (1);
 	return (0);
 }
+
+int	is_full_spaces(std::string str)
+{
+	for (size_t i = 0; i < str.length() ; i++)
+	{
+		if (!isspace(str[i]))
+			return (0);
+	}
+	return (1);
+}
+
+void	get_line(std::string &str, std::string name)
+{
+	if (getline(std::cin, str).eof())
+		puterr();
+	while (str.empty() || is_full_spaces(str))
+	{
+		std::cout << "Contact cannot have any empty field." << std::endl << name;
+		if (getline(std::cin, str).eof())
+			puterr();
+	}
+}

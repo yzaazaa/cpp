@@ -36,31 +36,29 @@ void	PhoneBook::add()
 {
 	std::cout << "First Name: ";
 	std::string	firstName;
-	if (getline(std::cin, firstName).eof())
-		puterr();
+	get_line(firstName, "First Name: ");
+
 	std::cout << "Last Name: ";
 	std::string	lastName;
-	if (getline(std::cin, lastName).eof())
-		puterr();
+	get_line(lastName, "Last Name: ");
+
 	std::cout << "Nickname: ";
 	std::string	nickname;
-	if (getline(std::cin, nickname).eof())
-		puterr();
+	get_line(nickname, "Nickname: ");
+
 	std::cout << "Phone Number: ";
 	std::string	phoneNumber;
-	if (getline(std::cin, phoneNumber).eof())
-		puterr();
+	get_line(phoneNumber, "Phone Number: ");
 	while (!check_phone_number(phoneNumber))
 	{
-		std::cout << "Phone number not valid!" << std::endl << "Phone Number: ";
-		if (getline(std::cin, phoneNumber).eof())
-			puterr();
+		std::cout << "Not a valid phone number." << std::endl;
+		std::cout << "Phone Number: ";
+		get_line(phoneNumber, "Phone Number: ");
 	}
-
 	std::cout << "Darkest Secret: ";
 	std::string	darkestSecret;
-	if (getline(std::cin, darkestSecret).eof())
-		puterr();
+	get_line(darkestSecret, "Darkest Secret: ");
+
 	if (this->index == 8)
 		this->index = 0;
 	this->contacts[this->index++] = Contact(firstName, lastName
@@ -97,5 +95,5 @@ void	PhoneBook::search()
 	std::cout << std::left << std::setw(14) << "Phone number";
 	std::cout << ": " << contacts[i].phone_number << std::endl;
 	std::cout << std::left << std::setw(14) << "Darkest secret";
-	std::cout << ": " << contacts[i].phone_number << std::endl;
+	std::cout << ": " << contacts[i].darkest_secret << std::endl;
 }
