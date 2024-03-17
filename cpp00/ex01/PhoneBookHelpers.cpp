@@ -6,6 +6,8 @@ int	check_phone_number(std::string phoneNumber)
 
 	if (phoneNumber[i] == '+')
 		i++;
+	if (!phoneNumber[i])
+		return (0);
 	while (isdigit(phoneNumber[i]))
 		i++;
 	if (phoneNumber[i])
