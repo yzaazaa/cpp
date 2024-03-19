@@ -33,7 +33,10 @@ static void	replace(char **av, std::string str)
 int	main(int ac, char **av)
 {
 	if (ac != 4)
+	{
+		std::cout << "Invalid arguments." << std::endl;
 		return (1);
+	}
 	std::ifstream	file_stream(av[1]);
 	if (file_stream.fail())
 		failed(std::string (av[1]));
