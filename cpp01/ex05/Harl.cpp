@@ -29,6 +29,7 @@ void	Harl::error( void )
 
 void	Harl::complain(std::string level)
 {
+	int	i;
 	void	(Harl::*functions[4])(void) = {
 		&Harl::debug,
 		&Harl::info,
@@ -41,7 +42,7 @@ void	Harl::complain(std::string level)
 		"WARNING",
 		"ERROR",
 	};
-	for (int i = 0; i < 4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (level == levels[i])
 		{
@@ -49,4 +50,6 @@ void	Harl::complain(std::string level)
 			break ;
 		}
 	}
+	if (i == 4)
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
