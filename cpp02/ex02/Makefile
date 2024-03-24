@@ -1,10 +1,10 @@
-NAME = brainz
+NAME = a.out
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = Fixed.cpp main.cpp
+
+HEADER = Fixed.hpp
 
 OBJS = ${SRCS:.cpp=.o}
-
-HEADERS = Zombie.hpp
 
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
@@ -15,10 +15,10 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(COMP) $(OBJS) -o $(NAME)
 
-%.o : %.cpp $(HEADERS)
+%.o : %.cpp $(HEADER)
 	$(COMP) $(FLAGS) -c $< -o $@
 
-clean : 
+clean :
 	rm -rf $(OBJS)
 
 fclean : clean

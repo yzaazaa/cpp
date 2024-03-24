@@ -76,7 +76,7 @@ void	PhoneBook::search()
 	if (getline(std::cin, index).eof())
 		puterr();
 	std::stringstream o(index);
-	if (!(o >> i) || i  < 0 || i > 7)
+	if (!(o >> i) || i < 0 || i > 7)
 	{
 		std::cout << "Wrong index." << std::endl;
 		return ;

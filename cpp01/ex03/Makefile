@@ -13,7 +13,7 @@ COMP = c++
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(COMP) $(FLAGS) $(OBJS) -o $(NAME)
+	$(COMP) $(OBJS) -o $(NAME)
 
 %.o : %.cpp $(HEADERS)
 	$(COMP) $(FLAGS) -c $< -o $@
