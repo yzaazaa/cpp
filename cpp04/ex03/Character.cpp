@@ -1,4 +1,6 @@
 #include "Character.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 Character::Character()
 {
@@ -9,24 +11,55 @@ Character::Character(std::string const &name) : name(name)
 {
 	for (int i = 0; i < 4; i++)
 		this->inventory[i] = 0;
-	std::cout << "Character constructor called!" << std::endl;
 }
 
 Character::Character(Character const &character)
 {
 	*this = character;
-	std::cout << "Character copy constructor called!" << std::endl;
 }
 
 Character	&Character::operator=(Character const &rhs)
 {
+	this->name = rhs.getName();
 	for (int i = 0; i < 4; i++)
-		this->inventory[i] = new AMateria(rhs);
+	{
+		if (this->inventory[i])
+			delete this->inventory[i];
+	}
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = rhs.inventory[i]->clone();
+	return (*this);
 }
 
-std::string const	&ICharacter::getName() const
+std::string const	&Character::getName() const
 {
 	return this->name;
+}
+
+void	Character::equip(AMateria* m)
+{
+	if (!m)
+		return ;
+	for (int i = 0; i < 4; i++)
+	{
+		if (!this->inventory[i])
+		{
+			this->inventory[i] = m;
+			break ;
+		}
+	}
+}
+
+void	Character::unequip(int idx)
+{
+	if (idx >= 0 && idx <= 4 && this->inventory[idx])
+		this->inventory[idx] = 0;
+}
+
+void	Character::use(int idx, ICharacter& target)
+{
+	if (idx >= 0 && idx <= 4 && this->inventory[idx])
+		this->inventory[idx]->use(target);
 }
 
 
@@ -37,5 +70,7 @@ std::ostream	&operator<<(std::ostream &o, Character const &rhs)
 
 Character::~Character()
 {
-	std::cout << "Character destructor called!" << std::endl;
+	for (int i = 0; i < 4; i++)
+		if (this->inventory[i])
+			delete this->inventory[i];
 }

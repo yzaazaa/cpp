@@ -1,19 +1,11 @@
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-AMateria::AMateria()
-{
-	return ;
-}
+AMateria::AMateria() {}
 
-AMateria::AMateria(std::string const &type) : type(type)
-{
-	std::cout << "AMateria constructor called!" << std::endl;
-}
+AMateria::AMateria(std::string const &type) : type(type) {}
 
-AMateria::AMateria(AMateria const &materia) : type(materia.type)
-{
-	std::cout << "AMateria copy constructor called!" << std::endl;
-}
+AMateria::AMateria(AMateria const &materia) : type(materia.type) {}
 
 AMateria	&AMateria::operator=(AMateria const &rhs)
 {
@@ -26,8 +18,10 @@ std::string	const	&AMateria::getType() const
 	return this->type;
 }
 
-
-AMateria::~AMateria()
+void	AMateria::use(ICharacter& target)
 {
-	std::cout << "AMateria destructor called!" << std::endl;
+	std::cout << "* AMateria used at " << target.getName() << " *" << std::endl;
 }
+
+
+AMateria::~AMateria() {}

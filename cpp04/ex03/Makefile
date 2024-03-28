@@ -1,8 +1,8 @@
-NAME = Interface
+NAME = a.out
 
-SRCS = AMateria.cpp Ice.cpp Cure.cpp ICharacter.cpp Character.cpp
+SRCS = AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp main.cpp
 
-HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp
+HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp MateriaSource.hpp
 
 OBJS = ${SRCS:.cpp=.o}
 

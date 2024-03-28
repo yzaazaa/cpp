@@ -2,7 +2,9 @@
 #ifndef __ICHARACTER_H__
 # define __ICHARACTER_H__
 
-# include "AMateria.hpp"
+# include <iostream>
+
+class AMateria;
 
 class ICharacter
 {
