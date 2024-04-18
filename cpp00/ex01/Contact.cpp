@@ -16,3 +16,28 @@ Contact::Contact(std::string first, std::string last, std::string nickname
 {
 	return ;
 }
+
+std::string	Contact::getFirstName()
+{
+	return this->first_name;
+}
+
+std::string	Contact::getLastName()
+{
+	return this->last_name;
+}
+
+std::string	Contact::getNickname()
+{
+	return this->nickname;
+}
+
+std::string	Contact::getPhoneNumber()
+{
+	return this->phone_number;
+}
+
+std::string	Contact::getDarkestSecret()
+{
+	return this->darkest_secret;
+}

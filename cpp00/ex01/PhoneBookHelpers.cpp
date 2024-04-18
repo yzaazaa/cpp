@@ -23,9 +23,9 @@ void	puterr()
 
 int	check_empty(Contact contact)
 {
-	if (contact.darkest_secret == "EMPTY" && contact.first_name == "EMPTY"
-		&& contact.last_name == "EMPTY" && contact.nickname == "EMPTY"
-		&& contact.phone_number == "EMPTY")
+	if (contact.getDarkestSecret() == "EMPTY" && contact.getFirstName() == "EMPTY"
+		&& contact.getLastName() == "EMPTY" && contact.getNickname() == "EMPTY"
+		&& contact.getPhoneNumber() == "EMPTY")
 		return (1);
 	return (0);
 }

@@ -20,13 +20,13 @@ void	PhoneBook::print()
 {
 	for (int i = 0; i < 8; i++)
 	{
-		std::cout << std::left << std::setw(10) << i;
+		std::cout << std::right << std::setw(10) << i;
 		std::cout << "|";
-		std::cout << std::left << std::setw(10) << truncate(contacts[i].first_name);
+		std::cout << std::right << std::setw(10) << truncate(contacts[i].getFirstName());
 		std::cout << "|";
-		std::cout << std::left << std::setw(10) << truncate(contacts[i].last_name);
+		std::cout << std::right << std::setw(10) << truncate(contacts[i].getLastName());
 		std::cout << "|";
-		std::cout << std::left << std::setw(10) << truncate(contacts[i].nickname);
+		std::cout << std::right << std::setw(10) << truncate(contacts[i].getNickname());
 		std::cout << "\0";
 		std::cout << std::endl;
 	}
@@ -87,13 +87,13 @@ void	PhoneBook::search()
 		return ;
 	}
 	std::cout << std::left << std::setw(14) << "First name";
-	std::cout << ": " << contacts[i].first_name << std::endl;
+	std::cout << ": " << contacts[i].getFirstName() << std::endl;
 	std::cout << std::left << std::setw(14) << "Last name";
-	std::cout << ": " << contacts[i].last_name << std::endl;
+	std::cout << ": " << contacts[i].getLastName() << std::endl;
 	std::cout << std::left << std::setw(14) << "Nickname";
-	std::cout << ": " << contacts[i].nickname << std::endl;
+	std::cout << ": " << contacts[i].getNickname() << std::endl;
 	std::cout << std::left << std::setw(14) << "Phone number";
-	std::cout << ": " << contacts[i].phone_number << std::endl;
+	std::cout << ": " << contacts[i].getPhoneNumber() <<  std::endl;
 	std::cout << std::left << std::setw(14) << "Darkest secret";
-	std::cout << ": " << contacts[i].darkest_secret << std::endl;
+	std::cout << ": " << contacts[i].getDarkestSecret() << std::endl;
 }

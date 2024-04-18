@@ -6,7 +6,7 @@ OBJS = ${SRCS:.cpp=.o}
 
 HEADERS = PhoneBook.hpp Contact.hpp
 
-FLAGS = -Wall -Werror -Wextra  
+FLAGS = -Wall -Werror -Wextra
 
 COMP = c++
 
