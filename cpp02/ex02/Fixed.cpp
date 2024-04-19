@@ -46,6 +46,11 @@ bool	Fixed::operator==(Fixed const &rhs) const
 	return (this->fixedValue == rhs.getRawBits());
 }
 
+bool	Fixed::operator!=(Fixed const &rhs) const
+{
+	return (this->fixedValue != rhs.getRawBits());
+}
+
 Fixed	Fixed::operator+(Fixed const &rhs) const
 {
 	return Fixed(this->toFloat() + rhs.toFloat());

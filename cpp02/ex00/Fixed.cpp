@@ -18,7 +18,6 @@ Fixed::Fixed(Fixed const &fixed)
 	*this = fixed;
 }
 
-
 Fixed::~Fixed( void )
 {
 	std::cout << "Destructor called" << std::endl;
