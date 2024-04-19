@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <fcntl.h>
 
 static void	failed(std::string str)
 {
@@ -12,8 +13,8 @@ static void	replace(char **av, std::string str)
 	std::ofstream	file_stream;
 	int				pos;
 
-	file_stream.open(std:: string (av[1]) + "_replace");
-	if (file_stream.fail())
+	file_stream.open(std::string (av[1]) + "_replace");
+	if (!file_stream.is_open())
 		failed(std::string (av[1]) + "_replace");
 	for (int i = 0; i < (int)str.length(); i++)
 	{
@@ -38,7 +39,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	std::ifstream	file_stream(av[1]);
-	if (file_stream.fail())
+	if (!file_stream.is_open())
 		failed(std::string (av[1]));
 	std::string		str;
 	char			c;
