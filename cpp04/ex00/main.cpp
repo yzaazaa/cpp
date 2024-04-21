@@ -1,5 +1,7 @@
+#include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
 int	main()
@@ -11,14 +13,14 @@ int	main()
 	const WrongAnimal* wrongCat = new WrongCat();
 	std::cout << cat->getType() << " " << std::endl;
 	std::cout << dog->getType() << " " << std::endl;
-	cat->makeSound(); //will output the cat sound!
+	cat->makeSound();
 	dog->makeSound();
 	animal->makeSound();
 	wrongAnimal->makeSound();
 	wrongCat->makeSound();
-	delete cat;
-	delete dog;
 	delete animal;
+	delete dog;
+	delete cat;
 	delete wrongAnimal;
 	delete wrongCat;
 	return 0;

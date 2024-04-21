@@ -3,7 +3,7 @@
 
 Ice::Ice() : AMateria("ice") {}
 
-Ice::Ice(Ice const &ice) : AMateria(ice)
+Ice::Ice(Ice const &ice) : AMateria(ice.getType())
 {
 	*this = ice;
 }
