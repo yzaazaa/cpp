@@ -3,9 +3,9 @@
 int main ( void )
 {
     Point   a(0, 0);
-    Point   b(10, 30);
-    Point   c(20, 0);
-    Point   point(10, 10);
+    Point   b(1, 0);
+    Point   c(0, 1);
+    Point   point(0.5, 0);
 
     std::cout << "a: " << a << std::endl;
     std::cout << "b: " << b << std::endl;

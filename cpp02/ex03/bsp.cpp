@@ -21,6 +21,8 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed	pbcArea = area(point, b, c);
 	Fixed	pcaArea = area(point, c, a);
 
+	if (pabArea == 0 || pbcArea == 0 || pcaArea == 0)
+		return false;
 	if (abcArea == pabArea + pbcArea + pcaArea)
 		return true;
 	return false;
