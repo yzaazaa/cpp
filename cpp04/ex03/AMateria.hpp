@@ -8,14 +8,11 @@ class ICharacter;
 
 class AMateria
 {
-
-private:
-	AMateria();
-
 protected:
 	std::string	type;
 
 public:
+	AMateria();
 	AMateria(std::string const &type);
 	AMateria(AMateria const &materia);
 	AMateria	&operator=(AMateria const &rhs);

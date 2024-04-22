@@ -14,14 +14,17 @@ MateriaSource::MateriaSource(MateriaSource const &materiaSource)
 MateriaSource	&MateriaSource::operator=(MateriaSource const &rhs)
 {
 	for (int i = 0; i < 4; i++)
+	{
 		if (this->inventory[i])
+		{
 			delete this->inventory[i];
+			this->inventory[i] = 0;
+		}
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (rhs.inventory[i])
 			this->inventory[i] = rhs.inventory[i]->clone();
-		else
-			this->inventory[i] = 0;
 	}
 	return (*this);
 }

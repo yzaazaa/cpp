@@ -9,12 +9,14 @@ Dog::Dog() : Animal()
 
 Dog::Dog(Dog const &dog)
 {
+	this->brain = NULL;
 	*this = dog;
 	std::cout << "Dog copy constructor called!" << std::endl;
 }
 
 Dog	&Dog::operator=(Dog const &rhs)
 {
+	delete this->brain;
 	this->brain = new Brain(*rhs.brain);
 	this->type = rhs.getType();
 	return (*this);
