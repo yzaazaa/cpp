@@ -6,14 +6,14 @@ HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp MateriaSour
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra -ggdb3 -fsanitize=address
+FLAGS = -Wall -Werror -Wextra
 
 COMP = c++
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(COMP) -ggdb3 -fsanitize=address $(OBJS) -o $(NAME)
+	$(COMP) $(OBJS) -o $(NAME)
 
 %.o : %.cpp $(HEADERS)
 	$(COMP) $(FLAGS) -c $< -o $@

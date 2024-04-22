@@ -8,7 +8,7 @@ class Dog : public Animal
 {
 
 public:
-	void	makeSound() const;
+	virtual void	makeSound() const;
 
 	Dog();
 	Dog(Dog const &dog);

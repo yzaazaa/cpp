@@ -33,6 +33,9 @@ int	main()
 	allocate(animals, nb_animals);
 	make_sound(animals, nb_animals);
 	deallocate(animals, nb_animals);
-
+	Dog basic;
+	{
+	Dog tmp = basic;
+	}
 	return 0;
 }

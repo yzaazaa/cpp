@@ -4,7 +4,9 @@
 
 Character::Character()
 {
-	return ;
+	this->name = "Character";
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = 0;
 }
 
 Character::Character(std::string const &name) : name(name)

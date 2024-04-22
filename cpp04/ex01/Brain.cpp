@@ -3,7 +3,7 @@
 Brain::Brain()
 {
 	for (int i = 0; i < 100; i++)
-		this->ideas[i] = "Empty";
+		this->ideas[i] = "\0";
 	std::cout << "Brain constructor called!" << std::endl;
 }
 

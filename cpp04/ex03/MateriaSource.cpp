@@ -17,7 +17,12 @@ MateriaSource	&MateriaSource::operator=(MateriaSource const &rhs)
 		if (this->inventory[i])
 			delete this->inventory[i];
 	for (int i = 0; i < 4; i++)
-		this->inventory[i] = rhs.inventory[i]->clone();
+	{
+		if (rhs.inventory[i])
+			this->inventory[i] = rhs.inventory[i]->clone();
+		else
+			this->inventory[i] = 0;
+	}
 	return (*this);
 }
 
@@ -35,9 +40,9 @@ void MateriaSource::learnMateria(AMateria *materia)
 
 AMateria*	MateriaSource::createMateria(std::string const &type)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 3; i >= 0; i--)
 	{
-		if (this->inventory[i]->getType() == type)
+		if (this->inventory[i] && this->inventory[i]->getType() == type)
 			return this->inventory[i]->clone();
 	}
 	return 0;

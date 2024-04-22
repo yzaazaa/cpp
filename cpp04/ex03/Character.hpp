@@ -11,9 +11,9 @@ class Character : public ICharacter
 private:
 	AMateria	*inventory[4];
 	std::string	name;
-	Character();
 
 public:
+	Character();
 	Character(std::string const &name);
 	Character(Character const &character);
 	Character	&operator=(Character const &rhs);

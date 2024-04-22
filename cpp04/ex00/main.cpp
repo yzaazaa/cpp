@@ -6,11 +6,11 @@
 
 int	main()
 {
-	const Animal* animal = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
-	const WrongAnimal* wrongAnimal = new WrongAnimal();
-	const WrongAnimal* wrongCat = new WrongCat();
+	Animal* animal = new Animal();
+	Animal* dog = new Dog();
+	Animal* cat = new Cat();
+	WrongAnimal* wrongAnimal = new WrongAnimal();
+	WrongAnimal* wrongCat = new WrongCat();
 	std::cout << cat->getType() << " " << std::endl;
 	std::cout << dog->getType() << " " << std::endl;
 	cat->makeSound();
