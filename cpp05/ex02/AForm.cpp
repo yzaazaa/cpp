@@ -32,6 +32,11 @@ const char*	AForm::FormSignedException::what() const throw()
 	return "Form already signed!";
 }
 
+const char*	AForm::FormNotSignedException::what() const throw()
+{
+	return "Form not signed yet!";
+}
+
 std::string	const	&AForm::getName() const
 {
 	return this->name;
@@ -62,14 +67,23 @@ void	AForm::beSigned(Bureaucrat &bureaucrat)
 	this->isSigned = true;
 }
 
-int	AForm::verifyGrade(int const grade)
+int	AForm::verifyGrade(int const grade) const
 {
 	if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	return grade;
 }
+
+void	AForm::checkExecution(Bureaucrat const &executor) const
+{
+	if (!this->getSignStatus())
+		throw AForm::FormNotSignedException();
+	if (this->gradeToExecute < executor.getGrade())
+		throw AForm::GradeTooLowException();
+}
+
 
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs)
 {

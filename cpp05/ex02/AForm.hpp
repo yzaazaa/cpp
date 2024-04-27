@@ -17,7 +17,8 @@ public:
 	int					getGradeToSign() const;
 	int					getGradeToExecute() const;
 	void				beSigned(Bureaucrat &bureaucrat);
-	int					verifyGrade(int const grade);
+	int					verifyGrade(int const grade) const;
+	void				checkExecution(Bureaucrat const &executor) const;
 	virtual void		execute(Bureaucrat const &executor) const = 0;
 
 	AForm();
@@ -37,6 +38,11 @@ public:
 			const char* what() const throw();
 	};
 	class FormSignedException : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
+	class FormNotSignedException : public std::exception
 	{
 		public:
 			const char* what() const throw();

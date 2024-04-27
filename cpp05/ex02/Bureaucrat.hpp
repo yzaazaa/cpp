@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-class	Form;
+class	AForm;
 
 class Bureaucrat
 {
@@ -15,7 +15,8 @@ public:
 	int					getGrade() const;
 	void				incrementGrade();
 	void				decrementGrade();
-	void				signForm(Form &form);
+	void				signForm(AForm &form);
+	void				executeForm(AForm const &form);
 
 	Bureaucrat();
 	Bureaucrat(std::string const name, int grade);
