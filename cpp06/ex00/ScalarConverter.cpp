@@ -3,17 +3,49 @@
 #include <sstream>
 #include "ScalarConverter.hpp"
 
+bool checkSpecialValues(const std::string &str)
+{
+	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "-inf" || str == "+inf" || str == "nan")
+		return true;
+	return false;
+}
+
+bool	checkFloatingPoint(const std::string &str)
+{
+	std::istringstream	iss(str);
+	double	value;
+	iss >> value;
+	if (iss.fail() || !iss.eof())
+	{
+		if (str[str.size() - 1] == 'f')
+		{
+			std::istringstream	iss(str.substr(str.size() - 1));
+			double	value;
+			iss >> value;
+			if (iss.fail() || !iss.eof())
+				return false;
+			return true;
+		}
+		return false;
+	}
+	return true;
+}
+
 void	getValueType(const std::string &str, double *value, std::string *value_str, e_type *type)
 {
-	if (str.length() == 1 && std::isalpha(str[0]))
+	if (checkSpecialValues(str))
 	{
-		*value = static_cast<int>(str[0]);
+		*value_str = str;
+		*type = STRING;
+		return ;
+	}
+	if (str.length() == 1 && !isdigit(str[0]))
+	{
+		*value = static_cast<double>(str[0]);
 		*type = DOUBLE;
 		return ;
 	}
-	if (std::isalpha(str[0]))
-		throw std::out_of_range("Invalid value");
-	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "-inf" || str == "+inf" || str == "nan")
+	if (!checkFloatingPoint(str))
 	{
 		*value_str = str;
 		*type = STRING;
@@ -59,10 +91,28 @@ void	toInt(const e_type type, const double value)
 	std::cout << i;
 }
 
+bool	fractionalPartZero(const std::string str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] && str[i] != '.')
+		i++;
+	if (!str[i])
+		return true;
+	i++;
+	while (str[i] == '0')
+		i++;
+	if (str[i])
+		return false;
+	return true;
+}
+
 void	toFloat(const e_type type, const double value, const std::string value_str)
 {
 	float	f;
-	int		i;
 
 	if (type == STRING)
 	{
@@ -72,8 +122,10 @@ void	toFloat(const e_type type, const double value, const std::string value_str)
 			std::cout << "+inff";
 		else if (value_str == "nan")
 			std::cout << "nanf";
-		else
+		else if (value_str == "nanf" || value_str == "+inff" || value_str == "-inff")
 			std::cout << value_str;
+		else
+			std::cout << "impossible";
 		return ;
 	}
 	if (value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::lowest())
@@ -82,14 +134,11 @@ void	toFloat(const e_type type, const double value, const std::string value_str)
 		return ;
 	}
 	f = static_cast<float>(value);
-	i = static_cast<int>(value);
-	std::cout << f << (f - i ? "f" : ".0f");
+	std::cout << f << (!fractionalPartZero(value_str) ? "f" : ".0f");
 }
 
 void	toDouble(const e_type type, const double value, const std::string value_str)
 {
-	int		i;
-
 	if (type == STRING)
 	{
 		if (value_str == "-inff")
@@ -98,12 +147,13 @@ void	toDouble(const e_type type, const double value, const std::string value_str
 			std::cout << "+inf";
 		else if (value_str == "nanf")
 			std::cout << "nan";
-		else
+		else if (value_str == "nan" || value_str == "+inf" || value_str == "-inf")
 			std::cout << value_str;
+		else
+			std::cout << "impossible";
 		return ;
 	}
-	i = static_cast<int>(value);
-	std::cout << value << (value - i ? "" : ".0");
+	std::cout << value << (!fractionalPartZero(value_str) ? "" : ".0");
 }
 
 ScalarConverter::ScalarConverter() {}
