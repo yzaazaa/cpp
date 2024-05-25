@@ -19,7 +19,7 @@ bool	checkFloatingPoint(const std::string &str)
 	{
 		if (str[str.size() - 1] == 'f')
 		{
-			std::istringstream	iss(str.substr(str.size() - 1));
+			std::istringstream	iss(str.substr(0, str.size() - 1));
 			double	value;
 			iss >> value;
 			if (iss.fail() || !iss.eof())
@@ -91,7 +91,7 @@ void	toInt(const e_type type, const double value)
 	std::cout << i;
 }
 
-bool	fractionalPartZero(const std::string str)
+bool	fractionalPartZero(const std::string &str)
 {
 	int	i;
 
@@ -100,17 +100,17 @@ bool	fractionalPartZero(const std::string str)
 		i++;
 	while (str[i] && str[i] != '.')
 		i++;
-	if (!str[i])
+	if (!str[i] || str[i] == 'f')
 		return true;
 	i++;
 	while (str[i] == '0')
 		i++;
-	if (str[i])
-		return false;
-	return true;
+	if (!str[i] || str[i] == 'f')
+		return true;
+	return false;
 }
 
-void	toFloat(const e_type type, const double value, const std::string value_str)
+void	toFloat(const std::string str, const e_type type, const double value, const std::string &value_str)
 {
 	float	f;
 
@@ -134,10 +134,14 @@ void	toFloat(const e_type type, const double value, const std::string value_str)
 		return ;
 	}
 	f = static_cast<float>(value);
-	std::cout << f << (!fractionalPartZero(value_str) ? "f" : ".0f");
+	std::cout << f;
+	if (fractionalPartZero(str))
+		std::cout << ".0f";
+	else
+		std::cout << "f";
 }
 
-void	toDouble(const e_type type, const double value, const std::string value_str)
+void	toDouble(const std::string str, const e_type type, const double value, const std::string value_str)
 {
 	if (type == STRING)
 	{
@@ -153,7 +157,9 @@ void	toDouble(const e_type type, const double value, const std::string value_str
 			std::cout << "impossible";
 		return ;
 	}
-	std::cout << value << (!fractionalPartZero(value_str) ? "" : ".0");
+	std::cout << value;
+	if (fractionalPartZero(str))
+		std::cout << ".0";
 }
 
 ScalarConverter::ScalarConverter() {}
@@ -170,6 +176,6 @@ void	ScalarConverter::convert(std::string &str)
 	getValueType(str, &value, &value_str, &type);
 	std::cout << "char: "; toChar(type, value); std::cout << std::endl;
 	std::cout << "int: "; toInt(type, value); std::cout << std::endl;
-	std::cout << "float: "; toFloat(type, value, value_str); std::cout << std::endl;
-	std::cout << "double: "; toDouble(type, value, value_str); std::cout << std::endl;
+	std::cout << "float: "; toFloat(str, type, value, value_str); std::cout << std::endl;
+	std::cout << "double: "; toDouble(str, type, value, value_str); std::cout << std::endl;
 }
