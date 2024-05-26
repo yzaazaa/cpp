@@ -13,6 +13,7 @@ public:
 	Array(Array const &arr);
 	Array(unsigned int const n);
 	Array	&operator=(Array const &rhs);
+	T	&operator[](unsigned int i);
 	~Array();
 };
 
