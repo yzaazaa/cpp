@@ -15,9 +15,16 @@ class BitcoinExchange
 	public:
 		void	parseDB();
 		void	printDB();
+		void	putPrice(std::string const &date, double const value);
+		void	parseInput(std::string const &fileName);
 		static void	putPrices(std::string const &fileName);
 
 		class DBFormatException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class DBEmptyException : public std::exception
 		{
 			public:
 				const char* what() const throw();
