@@ -20,7 +20,7 @@ const char*	BitcoinExchange::DBEmptyException::what() const throw()
 	return "Database is empty!";
 }
 
-bool	checkDate(const std::string &dateStr)
+bool	BitcoinExchange::checkDate(const std::string &dateStr)
 {
 	std::tm tm = {};
 	std::istringstream	ss(dateStr);
@@ -34,7 +34,7 @@ bool	checkDate(const std::string &dateStr)
 	return true;
 }
 
-bool	checkValue(const std::string &valueStr)
+bool	BitcoinExchange::checkValue(const std::string &valueStr)
 {
 	std::istringstream	ss(valueStr);
 	double				value;
@@ -60,18 +60,15 @@ void	BitcoinExchange::parseDB()
 		date = line.substr(0, line.find(',', 0));
 		value = line.substr(line.find(',', 0) + 1, line.size());
 		if (!checkDate(date) || !checkValue(value))
+		{
+			dataFile.close();
 			throw BitcoinExchange::DBFormatException();
+		}
 		this->data[date] = std::stod(value, 0);
 	}
 	dataFile.close();
-	if (this->data.size() == 0)
+	if (this->data.empty())
 		throw BitcoinExchange::DBEmptyException();
-}
-
-void	BitcoinExchange::printDB()
-{
-	for (std::map<std::string, double>::iterator i = this->data.begin(); i != this->data.end(); i++)
-		std::cout << i->first << "," << i->second << std::endl;
 }
 
 void	BitcoinExchange::putPrice(std::string const &date, double const value)
@@ -79,21 +76,16 @@ void	BitcoinExchange::putPrice(std::string const &date, double const value)
 	std::map<std::string, double>::iterator it;
 	double 									price;
 
-	for (it = this->data.begin(); it != this->data.end(); it++)
+	it = this->data.lower_bound(date);
+	if (it != this->data.end() && it->first == date)
+		price = value * it->second;
+	else if (it == this->data.begin())
 	{
-		if (it->first == date)
-		{
-			price = it->second * value;
-			break ;
-		}
-		if (it != this->data.begin() && it->first > date)
-		{
-			price = (--it++)->second * value;
-			break ;
-		}
+		std::cerr << "Error: Date less than the first date in the database." << std::endl;
+		return ;
 	}
-	if (it == this->data.end())
-		price = --it->second * value;
+	else
+		price = value * (--it)->second;
 	std::cout << date << " => " << value << " = " << price << std::endl;
 }
 

@@ -12,11 +12,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
-%.o : %.c $(HEADERS)
-	$(COMP) $(CFLAGS) -c -o $@ $<
-
 $(NAME) : $(OBJS)
 	$(COMP) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o : %.cpp $(HEADERS)
+	$(COMP) $(CFLAGS) -c $< -o $@
 
 clean :
 	rm -rf $(OBJS)

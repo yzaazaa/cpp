@@ -8,15 +8,16 @@ class BitcoinExchange
 {
 	private:
 		std::map<std::string, double>	data;
+		bool	checkValue(const std::string &valueStr);
+		bool	checkDate(const std::string &dateStr);
+		void	parseDB();
+		void	putPrice(std::string const &date, double const value);
+		void	parseInput(std::string const &fileName);
 		BitcoinExchange();
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange	&operator=(BitcoinExchange const &);
 		~BitcoinExchange();
 	public:
-		void	parseDB();
-		void	printDB();
-		void	putPrice(std::string const &date, double const value);
-		void	parseInput(std::string const &fileName);
 		static void	putPrices(std::string const &fileName);
 
 		class DBFormatException : public std::exception
