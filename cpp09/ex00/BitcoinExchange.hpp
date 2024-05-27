@@ -17,9 +17,6 @@ class BitcoinExchange
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange	&operator=(BitcoinExchange const &);
 		~BitcoinExchange();
-	public:
-		static void	putPrices(std::string const &fileName);
-
 		class DBFormatException : public std::exception
 		{
 			public:
@@ -30,4 +27,6 @@ class BitcoinExchange
 			public:
 				const char* what() const throw();
 		};
+	public:
+		static void	putPrices(std::string const &fileName);
 };
