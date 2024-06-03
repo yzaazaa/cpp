@@ -78,20 +78,19 @@ int main(int argc, char **argv)
 		std::clock_t start = std::clock();
 		PmergeMe<std::vector<int> >::merge(vec);
 		std::clock_t end = std::clock();
-		double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		double duration = static_cast<double>(end - start) / (CLOCKS_PER_SEC / 1000000);
 
 		std::cout << "After: ";
 		printSequence(vec);
 
-		std::cout << std::fixed << std::setprecision(6);
-		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration * 1e6 << " us" << std::endl;
+		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration << " us" << std::endl;
 
 		start = std::clock();
 		PmergeMe<std::deque<int> >::merge(deq);
 		end = std::clock();
-		duration = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		duration = static_cast<double>(end - start) / (CLOCKS_PER_SEC / 1000000);
 
-		std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration * 1e6 << " us" << std::endl;
+		std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration << " us" << std::endl;
 	}
 	catch (std::exception& e)
 	{
