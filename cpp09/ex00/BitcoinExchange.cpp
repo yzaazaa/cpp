@@ -20,6 +20,19 @@ const char*	BitcoinExchange::DBEmptyException::what() const throw()
 	return "Database is empty!";
 }
 
+int	isLeapYear(int year)
+{
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int	daysInMonth(int year, int month)
+{
+	static const int daysPerMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if (month == 1 && isLeapYear(year))
+		return 29;
+	return daysPerMonth[month];
+}
+
 bool	BitcoinExchange::checkDate(const std::string &dateStr)
 {
 	std::tm tm = {};
@@ -30,6 +43,8 @@ bool	BitcoinExchange::checkDate(const std::string &dateStr)
 	if (ss.fail() || !ss.eof())
 		return false;
 	if (tm.tm_year < 0 || tm.tm_mon < 0 || tm.tm_mon > 11 || tm.tm_mday < 1 || tm.tm_mday > 31)
+		return false;
+	if (tm.tm_mday > daysInMonth(tm.tm_year + 1900, tm.tm_mon))
 		return false;
 	return true;
 }
