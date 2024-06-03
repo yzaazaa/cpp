@@ -33,6 +33,8 @@ void	RPN::process(char c)
 			this->data.push(val2 - val1);
 			break;
 		case '/':
+			if (val1 == 0)
+				throw RPN::RPNException();
 			this->data.push(val2 / val1);
 			break;
 		default:
