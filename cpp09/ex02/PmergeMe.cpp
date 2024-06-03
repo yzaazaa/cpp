@@ -16,34 +16,63 @@ template <typename T>
 PmergeMe<T>::~PmergeMe() {}
 
 template <typename T>
+void	PmergeMe<T>::insertionSort(T &seq, int left, int right)
+{
+	for (int i = left + 1; i <= right; i++)
+	{
+		int j = i;
+		while (j > left && seq[j] < seq[j - 1])
+		{
+			std::swap(seq[j], seq[j - 1]);
+			j--;
+		}
+	}
+}
+
+template <typename T>
+void	PmergeMe<T>::mergeSort(T &seq, int left, int mid, int right)
+{
+	if (seq[mid] <= seq[mid + 1])
+		return ;
+	
+	T temp(seq.begin() + left, seq.begin() + right + 1);
+
+	int i = left;
+	int j = mid + 1;
+	for (int k = left; k <= right; k++)
+	{
+		if (i > mid)
+			seq[k] = temp[j++ - left];
+		else if (j > right)
+			seq[k] = temp[i++ - left];
+		else if (temp[i - left] <= temp[j - left])
+			seq[k] = temp[i++ - left];
+		else
+			seq[k] = temp[j++ - left];
+	}
+}
+
+
+template <typename T>
+void	PmergeMe<T>::fordJohnsonMergeInsertionSort(T &seq, int left, int right)
+{
+	if (right - left + 1 <= 16)
+	{
+		insertionSort(seq, left, right);
+		return ;
+	}
+
+	int mid = left + (right - left) / 2;
+	fordJohnsonMergeInsertionSort(seq, left, mid);
+	fordJohnsonMergeInsertionSort(seq, mid + 1, right);
+	mergeSort(seq, left, mid, right);
+}
+
+template <typename T>
 void	PmergeMe<T>::merge(T &seq)
 {
-	if (seq.size() <= 1)
+	if (seq.size() <= 1 || std::is_sorted(seq.begin(), seq.end()))
 		return ;
 
-	std::vector<typename T::value_type> small;
-	std::vector<typename T::value_type> large;
-	for (size_t i = 0; i + 1 < seq.size(); i += 2)
-	{
-		if (seq[i] < seq[i + 1])
-		{
-			small.push_back(seq[i]);
-			large.push_back(seq[i + 1]);
-		}
-		else
-		{
-			small.push_back(seq[i + 1]);
-			large.push_back(seq[i]);
-		}
-	}
-	if (seq.size() % 2 != 0)
-		small.push_back(seq.back());
-	PmergeMe<T>::merge(small);
-	for (typename std::vector<typename T::value_type>::iterator it= large.begin(); it != large.end(); it++)
-	{
-		typename std::vector<typename T::value_type>::iterator	pos;
-		pos = std::upper_bound(small.begin(), small.end(), *it);
-		small.insert(pos, *it);
-	}
-	seq = small;
+	fordJohnsonMergeInsertionSort(seq, 0, seq.size() - 1);
 }
