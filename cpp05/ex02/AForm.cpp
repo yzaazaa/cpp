@@ -84,7 +84,6 @@ void	AForm::checkExecution(Bureaucrat const &executor) const
 		throw AForm::GradeTooLowException();
 }
 
-
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs)
 {
 	return o << rhs.getName() << " signed: " << rhs.getSignStatus() << ", grade to sign: " << rhs.getGradeToSign() << ", grade to execute: " << rhs.getGradeToExecute();

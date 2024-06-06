@@ -14,7 +14,6 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : name(name)
 	this->grade = grade;
 }
 
-
 Bureaucrat::Bureaucrat(Bureaucrat const &bureaucrat) : name(bureaucrat.getName())
 {
 	*this = bureaucrat;

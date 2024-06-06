@@ -12,7 +12,7 @@ int	main()
 		std::cout << b2 << std::endl;
 		b2.decrementGrade();
 		std::cout << b2 << std::endl;
-		Bureaucrat	b3("bo2", 50);
+		Bureaucrat	b3("bot2", 50);
 		b3 = b2;
 		std::cout << b3 << std::endl;
 		Bureaucrat	b4("bot3", 161);
