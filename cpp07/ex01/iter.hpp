@@ -3,7 +3,7 @@
 #include <iostream>
 
 template <typename LIST, typename FUNC>
-void	iter(LIST *arr, int size, FUNC (f)(LIST &))
+void	iter(LIST *arr, int size, FUNC f)
 {
 	for (int i = 0; i < size; i++)
 	{

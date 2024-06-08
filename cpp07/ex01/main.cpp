@@ -20,10 +20,10 @@ int	main(void)
 	::iter(int_array, 5, print<int>);
 	std::cout << "string array: " << std::endl;
 	::iter(str_array, 3, print<std::string>);
-	std::cout << "int array: " << std::endl;
 	::iter(int_array, 5, ft_inc);
+	std::cout << "int array: " << std::endl;
 	::iter(int_array, 5, print<int>);
-	std::cout << "string array: " << std::endl;
 	::iter(str_array, 3, ft_add_a);
+	std::cout << "string array: " << std::endl;
 	::iter(str_array, 3, print<std::string>);
 }
