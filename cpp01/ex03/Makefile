@@ -6,7 +6,7 @@ OBJS = ${SRCS:.cpp=.o}
 
 HEADERS = Weapon.hpp HumanA.hpp HumanB.hpp
 
-FLAGS = -Wall -Werror -Wextra  
+FLAGS = -Wall -Wextra -Werror  
 
 COMP = c++
 

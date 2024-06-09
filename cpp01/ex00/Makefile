@@ -6,7 +6,7 @@ OBJS = ${SRCS:.cpp=.o}
 
 HEADERS = Zombie.hpp
 
-FLAGS = -Wall -Werror -Wextra  
+FLAGS = -Wall -Wextra -Werror  
 
 COMP = c++
 

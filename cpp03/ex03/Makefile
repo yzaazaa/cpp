@@ -6,7 +6,7 @@ HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra -Wshadow
+FLAGS = -Wall -Wextra -Werror -Wshadow
 
 COMP = c++
 

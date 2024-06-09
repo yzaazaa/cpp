@@ -6,7 +6,7 @@ HEADERS = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp ShrubberyCreationF
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 
 COMP = c++
 

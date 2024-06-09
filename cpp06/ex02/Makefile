@@ -6,7 +6,7 @@ HEADERS = Base.hpp A.hpp B.hpp C.hpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 
 COMP = c++
 

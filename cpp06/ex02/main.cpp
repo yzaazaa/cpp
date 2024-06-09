@@ -50,7 +50,7 @@ void	identify(Base& p)
 			try
 			{
 				C	&test = dynamic_cast<C&>(p);
-			(void)test;
+				(void)test;
 				std::cout << "The actual type of the object pointed to by p is C" << std::endl;
 			}
 			catch (const std::bad_cast& e) {}

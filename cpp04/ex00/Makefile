@@ -6,7 +6,7 @@ HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 
 COMP = c++
 

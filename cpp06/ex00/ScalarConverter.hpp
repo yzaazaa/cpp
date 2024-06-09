@@ -17,5 +17,5 @@ public:
 enum e_type
 {
 	STRING,
-	DOUBLE,
+	DOUBLE
 };

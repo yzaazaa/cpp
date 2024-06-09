@@ -6,7 +6,7 @@ HEADERS = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp MateriaSour
 
 OBJS = ${SRCS:.cpp=.o}
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 
 COMP = c++
 

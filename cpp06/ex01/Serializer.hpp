@@ -7,7 +7,6 @@ typedef struct s_data
 	int	x;
 }				Data;
 
-
 class Serializer
 {
 private:

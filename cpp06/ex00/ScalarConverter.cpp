@@ -39,7 +39,7 @@ void	getValueType(const std::string &str, double *value, std::string *value_str,
 		*type = STRING;
 		return ;
 	}
-	if (str.length() == 1 && !isdigit(str[0]))
+	if (str.length() == 1 && !(str[0] >= '0' && str[0] <= '9'))
 	{
 		*value = static_cast<double>(str[0]);
 		*type = DOUBLE;
@@ -65,7 +65,7 @@ void	toChar(const e_type type, const double value)
 		return ;
 	}
 	c = static_cast<char>(value);
-	if (!std::isprint(c))
+	if (!(c >= ' ' && c < 127))
 	{
 		std::cout << "Non displayable";
 		return ;
@@ -98,7 +98,7 @@ bool	fractionalPartZero(const std::string &str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (str[i] && str[i] != '.')
+	while (str[i] && str[i] != '.' && str[i] != 'f')
 		i++;
 	if (!str[i] || str[i] == 'f')
 		return true;
