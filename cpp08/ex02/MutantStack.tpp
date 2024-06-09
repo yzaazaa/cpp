@@ -1,13 +1,17 @@
 #include "MutantStack.hpp"
 
 template <typename T>
-MutantStack<T>::MutantStack() {}
+MutantStack<T>::MutantStack() : std::stack<T>() {}
 
 template <typename T>
-MutantStack<T>::MutantStack(MutantStack const &) {}
+MutantStack<T>::MutantStack(MutantStack const &src) : std::stack<T>(src) {}
 
 template <typename T>
-MutantStack<T>	&MutantStack<T>::operator=(MutantStack const &) { return *this; }
+MutantStack<T>	&MutantStack<T>::operator=(MutantStack const &rhs)
+{
+	std::stack<T>::operator=(rhs);
+	return (*this)
+}
 
 template <typename T>
 MutantStack<T>::~MutantStack() {}

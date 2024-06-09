@@ -25,12 +25,14 @@ int main()
 			std::cout << *it << std::endl;
 			++it;
 		}
-		std::stack<int> s(mstack);
-		std::cout << "Printing stack: " << std::endl;
-		while (s.size())
+		MutantStack<int> s(mstack);
+		MutantStack<int>::iterator it1 = mstack.begin();
+		MutantStack<int>::iterator ite1 = mstack.end();
+		std::cout << "Printing mutant stack (copy constructor): " << std::endl;
+		while (it1 != ite1)
 		{
-			std::cout << s.top() << std::endl;
-			s.pop();
+			std::cout << *it1 << std::endl;
+			++it1;
 		}
 	}
 	std::cout << std::endl << std::endl;

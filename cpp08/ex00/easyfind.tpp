@@ -1,4 +1,5 @@
 #include "easyfind.hpp"
+#include <iostream>
 
 template <typename T>
 typename T::iterator	easyfind(T &container, int const to_find)
